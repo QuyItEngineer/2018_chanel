@@ -2,8 +2,7 @@
     <thead>
         <tr>
             <th>Url Banner</th>
-        <th>Created By</th>
-        <th>Updated By</th>
+            <th>Created At</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -11,8 +10,7 @@
     @foreach($banners as $banner)
         <tr>
             <td>{!! $banner->url_banner !!}</td>
-            <td>{!! $banner->created_by !!}</td>
-            <td>{!! $banner->updated_by !!}</td>
+            <td>{!! $banner->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['banners.destroy', $banner->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

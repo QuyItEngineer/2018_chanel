@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\ChanelRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -26,6 +27,7 @@ class CategoryController extends AppBaseController
      *
      * @param Request $request
      * @return Response
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function index(Request $request)
     {
@@ -52,6 +54,7 @@ class CategoryController extends AppBaseController
      * @param CreateCategoryRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CreateCategoryRequest $request)
     {
@@ -74,6 +77,8 @@ class CategoryController extends AppBaseController
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
+//        var_dump($category);
+        $chanels = $category->chanels;
 
         if (empty($category)) {
             Flash::error('Category not found');
@@ -81,7 +86,8 @@ class CategoryController extends AppBaseController
             return redirect(route('categories.index'));
         }
 
-        return view('categories.show')->with('category', $category);
+//        return view('categories.show')->with('category', $category);
+        return view('categories.show', compact(['category', 'chanels']));
     }
 
     /**
@@ -107,10 +113,11 @@ class CategoryController extends AppBaseController
     /**
      * Update the specified Category in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateCategoryRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function update($id, UpdateCategoryRequest $request)
     {

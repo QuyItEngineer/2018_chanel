@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\RecordFingerPrintTrait;
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Banner
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Banner extends Model
 {
-    use SoftDeletes;
+    use RecordFingerPrintTrait;
 
     public $table = 'banners';
     

@@ -4,8 +4,7 @@
             <th>Title</th>
         <th>Url Banner</th>
         <th>Description</th>
-        <th>Created By</th>
-        <th>Updated By</th>
+        <th>Created At</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -15,8 +14,7 @@
             <td>{!! $category->title !!}</td>
             <td>{!! $category->url_banner !!}</td>
             <td>{!! $category->description !!}</td>
-            <td>{!! $category->created_by !!}</td>
-            <td>{!! $category->updated_by !!}</td>
+            <td>{!! $category->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

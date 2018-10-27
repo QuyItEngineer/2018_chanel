@@ -35,14 +35,4 @@ class CategoryRepository extends BaseRepository
         return Category::class;
     }
 
-    /**
-     * @return mixed
-     *
-     * @author quyhbn <quyhbn@nal.vn>
-     */
-    public function getAll()
-    {
-        $listData = $this->all();
-        return $listData;
-    }
 }

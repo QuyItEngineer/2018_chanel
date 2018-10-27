@@ -34,7 +34,6 @@ class Category extends Model
     public $fillable = [
         'id',
         'title',
-        'url_banner',
         'description',
         'created_by',
         'updated_by'
@@ -63,5 +62,12 @@ class Category extends Model
         
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function chanels()
+    {
+        return $this->hasMany(Chanel::class);
+    }
     
 }

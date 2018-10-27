@@ -1,13 +1,13 @@
-<!-- Image Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('image', 'Image:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Category Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('category_id', 'Category Id:') !!}
+    {!! Form::number('category_id', $category_id, ['class' => 'form-control', 'readonly'=>'true']) !!}
 </div>
 
 <!-- Description Field -->
@@ -22,22 +22,11 @@
     {!! Form::textarea('video_url', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Category Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    {!! Form::number('category_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Created By Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('created_by', 'Created By:') !!}
-    {!! Form::number('created_by', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Updated By Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('updated_by', 'Updated By:') !!}
-    {!! Form::number('updated_by', null, ['class' => 'form-control']) !!}
+<!-- Image Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('image', 'Image:') !!}
+    {!! Form::text('image', null, ['class' => 'form-control']) !!}
+{{--    {!! Form::file('image', ['class' => 'form-control']) !!}--}}
 </div>
 
 <!-- Submit Field -->

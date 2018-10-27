@@ -6,8 +6,7 @@
         <th>Description</th>
         <th>Video Url</th>
         <th>Category Id</th>
-        <th>Created By</th>
-        <th>Updated By</th>
+        <th>Created At</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -19,8 +18,7 @@
             <td>{!! $chanel->description !!}</td>
             <td>{!! $chanel->video_url !!}</td>
             <td>{!! $chanel->category_id !!}</td>
-            <td>{!! $chanel->created_by !!}</td>
-            <td>{!! $chanel->updated_by !!}</td>
+            <td>{!! $chanel->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['chanels.destroy', $chanel->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

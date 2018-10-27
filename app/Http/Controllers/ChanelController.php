@@ -26,6 +26,7 @@ class ChanelController extends AppBaseController
      *
      * @param Request $request
      * @return Response
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function index(Request $request)
     {
@@ -39,11 +40,12 @@ class ChanelController extends AppBaseController
     /**
      * Show the form for creating a new Chanel.
      *
+     * @param $id
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('chanels.create');
+        return view('chanels.create')->with('category_id', $id);;
     }
 
     /**
@@ -52,6 +54,7 @@ class ChanelController extends AppBaseController
      * @param CreateChanelRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CreateChanelRequest $request)
     {
@@ -107,10 +110,11 @@ class ChanelController extends AppBaseController
     /**
      * Update the specified Chanel in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateChanelRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function update($id, UpdateChanelRequest $request)
     {

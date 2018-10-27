@@ -1,0 +1,24 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// Variables
+@import "variables";
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+
+$red: #C00807;
+$red-invert: #8A0101;
+
+$menu-item-color: $white;
+$menu-item-hover-color: $white;
+$menu-item-hover-background-color: $red-invert;
+$menu-item-active-color: $white;
+$menu-item-active-background-color: $red;
+$menu-label-color: $white;
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+#spa {
+  // Bulma
+  @import "~bulma/bulma";
+}

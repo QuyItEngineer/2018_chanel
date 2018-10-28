@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class CategoryRepository
  * @package App\Repositories
- * @version October 25, 2018, 1:06 pm UTC
+ * @version October 28, 2018, 2:57 pm UTC
  *
  * @method Category findWithoutFail($id, $columns = ['*'])
  * @method Category find($id, $columns = ['*'])
@@ -21,7 +21,6 @@ class CategoryRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'title',
-        'url_banner',
         'description',
         'created_by',
         'updated_by'
@@ -34,5 +33,4 @@ class CategoryRepository extends BaseRepository
     {
         return Category::class;
     }
-
 }

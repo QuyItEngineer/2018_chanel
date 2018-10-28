@@ -42,3 +42,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('banners', 'BannerController');
 });
+
+
+Route::resource('chanels', 'ChanelController');

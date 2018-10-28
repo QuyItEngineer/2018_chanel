@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ChanelDataTable;
 use App\Http\Requests\CreateChanelRequest;
 use App\Http\Requests\UpdateChanelRequest;
 use App\Repositories\ChanelRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class ChanelController extends AppBaseController
@@ -24,17 +22,12 @@ class ChanelController extends AppBaseController
     /**
      * Display a listing of the Chanel.
      *
-     * @param Request $request
+     * @param ChanelDataTable $chanelDataTable
      * @return Response
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
-    public function index(Request $request)
+    public function index(ChanelDataTable $chanelDataTable)
     {
-        $this->chanelRepository->pushCriteria(new RequestCriteria($request));
-        $chanels = $this->chanelRepository->all();
-
-        return view('chanels.index')
-            ->with('chanels', $chanels);
+        return $chanelDataTable->render('chanels.index');
     }
 
     /**
@@ -43,9 +36,9 @@ class ChanelController extends AppBaseController
      * @param $id
      * @return Response
      */
-    public function create($id)
+    public function create($id = null)
     {
-        return view('chanels.create')->with('category_id', $id);;
+        return view('chanels.create')->with('category_id', $id);
     }
 
     /**

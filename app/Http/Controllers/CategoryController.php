@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CategoryDataTable;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
-use App\Http\Controllers\AppBaseController;
-use App\Repositories\ChanelRepository;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class CategoryController extends AppBaseController
@@ -25,17 +22,12 @@ class CategoryController extends AppBaseController
     /**
      * Display a listing of the Category.
      *
-     * @param Request $request
+     * @param CategoryDataTable $categoryDataTable
      * @return Response
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
-    public function index(Request $request)
+    public function index(CategoryDataTable $categoryDataTable)
     {
-        $this->categoryRepository->pushCriteria(new RequestCriteria($request));
-        $categories = $this->categoryRepository->all();
-
-        return view('categories.index')
-            ->with('categories', $categories);
+        return $categoryDataTable->render('categories.index');
     }
 
     /**
@@ -77,7 +69,6 @@ class CategoryController extends AppBaseController
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
-//        var_dump($category);
         $chanels = $category->chanels;
 
         if (empty($category)) {
@@ -86,7 +77,6 @@ class CategoryController extends AppBaseController
             return redirect(route('categories.index'));
         }
 
-//        return view('categories.show')->with('category', $category);
         return view('categories.show', compact(['category', 'chanels']));
     }
 

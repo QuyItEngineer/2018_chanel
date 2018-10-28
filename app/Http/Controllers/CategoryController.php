@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CategoryDataTable;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
@@ -77,7 +78,6 @@ class CategoryController extends AppBaseController
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
-//        var_dump($category);
         $chanels = $category->chanels;
 
         if (empty($category)) {

@@ -13,7 +13,7 @@
                <div class="row">
                    {!! Form::model($chanel, ['route' => ['chanels.update', $chanel->id], 'method' => 'patch']) !!}
 
-                        @include('chanels.fields')
+                        @include('chanels.fields_edit')
 
                    {!! Form::close() !!}
                </div>

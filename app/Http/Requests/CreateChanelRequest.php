@@ -25,6 +25,10 @@ class CreateChanelRequest extends FormRequest
      */
     public function rules()
     {
-        return Chanel::$rules;
+        return array_merge(Chanel::$rules, [
+            'name' => 'required',
+            'image' => 'required|image',
+            'video_url' => 'required'
+        ]);
     }
 }

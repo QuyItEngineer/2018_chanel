@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
 use App\Models\Chanel;
+use App\Repositories\BannerRepository;
 use App\Repositories\CategoryRepository;
 
 /**
@@ -15,15 +16,21 @@ use App\Repositories\CategoryRepository;
 class CategoryAPIController extends AppBaseController
 {
     private $categoryRepository;
+    /**
+     * @var BannerRepository
+     */
+    private $bannerRepository;
 
     /**
      * CategoryAPIController constructor.
      *
      * @param CategoryRepository $categoryRepository
+     * @param BannerRepository $bannerRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, BannerRepository $bannerRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     /**
@@ -33,22 +40,50 @@ class CategoryAPIController extends AppBaseController
      */
     public function getAll()
     {
+//        $result = [
+//            [
+//                'url_banner' => $this->getLatestUrlBanner(),
+//            ]
+//        ];
+
+        $result = [
+            [
+                'url_banner' => $this->getLatestUrlBanner(),
+                'categories' => $this->getCategories()
+            ]
+        ];
+
+//        $list_data = $this->categoryRepository->all();
+//
+//        foreach ($list_data as $item) {
+//            $result = array_merge($result,
+//                [
+//                    [
+//                        'categories' => [
+//                            'name' => $item['title'],
+//                            'videos' => $this->getChanelByCategoryId($item)
+//                        ]
+//                    ]
+//                ]);
+//        }
+
+        return $this->sendResponse($result, 'Success');
+    }
+
+    public function getCategories()
+    {
         $result = [];
         $list_data = $this->categoryRepository->all();
 
         foreach ($list_data as $item) {
-            $result = array_merge($result,
+            $result = array_merge($result,[
                 [
-                    [
-                        'categories' => [
-                            'name' => $item['title'],
-                            'videos' => $this->getChanelByCategoryId($item)
-                        ]
-                    ]
-                ]);
+                    'name' => $item['title'],
+                    'videos' => $this->getChanelByCategoryId($item)
+                ]
+            ]);
         }
-
-        return $this->sendResponse($result, 'Success');
+        return $result;
     }
 
     /**
@@ -67,8 +102,8 @@ class CategoryAPIController extends AppBaseController
                     [
                         'name' => $chanel->name,
                         'description' => isset($chanel->description) ? $chanel->description : '',
-                        'url' => request()->root() . '/' . $chanel->video_url,
-                        'image' => request()->root() . '/' . $chanel->image
+                        'url' => $chanel->video_url,
+                        'image' => request()->root() . '/images/' . $chanel->image
                     ]
                 ]);
             }
@@ -78,5 +113,20 @@ class CategoryAPIController extends AppBaseController
         }
 
         return $result_chanel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLatestUrlBanner()
+    {
+        $result = '';
+        $banner = $this->bannerRepository->orderBy('updated_at', 'DESC')->first();
+
+        if (!empty($banner)) {
+            $result = request()->root() . '/images/' . $banner->url_banner;
+        }
+
+        return $result;
     }
 }

@@ -1,0 +1,12 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0px;
+}
+table.dataTable thead .sorting_desc:after {
+  content: normal;
+}
+table.dataTable thead .sorting:after {
+  content: normal;
+}
+table.dataTable thead .sorting_asc:after {
+  content: normal;
+}

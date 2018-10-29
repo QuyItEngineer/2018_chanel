@@ -7,7 +7,7 @@
 <!-- Category Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('category_id', 'Category Id:') !!}
-    {!! Form::number('category_id', $category_id, ['class' => 'form-control', 'readonly'=> 'true']) !!}
+    {!! Form::number('category_id', null, ['class' => 'form-control', 'readonly'=> 'true']) !!}
 </div>
 
 <!-- Description Field -->
@@ -26,7 +26,7 @@
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('image', 'Image:') !!}
 {{--    {!! Form::text('image', null, ['class' => 'form-control']) !!}--}}
-    {!! Form::file('image', ['class' => 'form-control']) !!}
+        {!! Form::file('image', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

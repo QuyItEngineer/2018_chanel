@@ -29,7 +29,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                @include('chanels.table')
+                @include('chanels.table_relation')
             </div>
         </div>
         <div class="text-center">

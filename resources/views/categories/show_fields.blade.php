@@ -1,3 +1,9 @@
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', 'ID:') !!}
+    <p>{!! $category->id !!}</p>
+</div>
+
 <!-- Title Field -->
 <div class="form-group">
     {!! Form::label('title', 'Title:') !!}

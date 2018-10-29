@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ChanelService;
 use App\DataTables\ChanelDataTable;
 use App\Http\Requests\CreateChanelRequest;
 use App\Http\Requests\UpdateChanelRequest;
 use App\Repositories\ChanelRepository;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class ChanelController extends AppBaseController
@@ -52,6 +54,13 @@ class ChanelController extends AppBaseController
     public function store(CreateChanelRequest $request)
     {
         $input = $request->all();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
 
         $chanel = $this->chanelRepository->create($input);
 
@@ -118,6 +127,14 @@ class ChanelController extends AppBaseController
 
             return redirect(route('chanels.index'));
         }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
+
 
         $chanel = $this->chanelRepository->update($request->all(), $id);
 

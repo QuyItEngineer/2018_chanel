@@ -13,10 +13,10 @@
     <tbody>
     @foreach($chanels as $chanel)
         <tr>
-            <td>{!! request()->root() . '/' . $chanel->image !!}</td>
+            <td>{!! request()->root() . '/images/' . $chanel->image !!}</td>
             <td>{!! $chanel->name !!}</td>
             <td>{!! $chanel->description !!}</td>
-            <td>{!! request()->root() . '/' . $chanel->video_url !!}</td>
+            <td>{!! $chanel->video_url !!}</td>
             <td>{!! $chanel->category_id !!}</td>
             <td>{!! $chanel->created_at !!}</td>
             <td>

@@ -22,10 +22,10 @@ class ChanelDataTableTransformer extends TransformerAbstract
     public function transform(Chanel $chanelDataTable)
     {
         return [
-            'image' => request()->root() . '/' . $chanelDataTable->image,
+            'image' => request()->root() . '/images/' . $chanelDataTable->image,
             'name' => $chanelDataTable->name,
             'description' => $chanelDataTable->description,
-            'video_url' => request()->root() . '/' . $chanelDataTable->video_url,
+            'video_url' => $chanelDataTable->video_url,
             'action' => view('chanels.datatables_actions', [
                 'id' => $chanelDataTable->id
             ])->render()

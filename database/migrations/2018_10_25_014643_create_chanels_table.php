@@ -19,7 +19,7 @@ class CreateChanelsTable extends Migration
             $table->increments('id');
             $table->string('image');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('video_url');
             $table->unsignedInteger('category_id')->nullable();
             $table->integer('created_by')->nullable();

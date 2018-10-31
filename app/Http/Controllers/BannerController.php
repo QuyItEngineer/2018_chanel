@@ -26,6 +26,7 @@ class BannerController extends AppBaseController
      *
      * @param Request $request
      * @return Response
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function index(Request $request)
     {
@@ -52,10 +53,18 @@ class BannerController extends AppBaseController
      * @param CreateBannerRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CreateBannerRequest $request)
     {
         $input = $request->all();
+
+        if ($request->hasFile('url_banner')) {
+            $image = $request->file('url_banner');
+            $input['url_banner'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['url_banner']);
+        }
 
         $banner = $this->bannerRepository->create($input);
 
@@ -107,10 +116,11 @@ class BannerController extends AppBaseController
     /**
      * Update the specified Banner in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateBannerRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function update($id, UpdateBannerRequest $request)
     {
@@ -120,6 +130,13 @@ class BannerController extends AppBaseController
             Flash::error('Banner not found');
 
             return redirect(route('banners.index'));
+        }
+
+        if ($request->hasFile('url_banner')) {
+            $image = $request->file('url_banner');
+            $input['url_banner'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['url_banner']);
         }
 
         $banner = $this->bannerRepository->update($request->all(), $id);

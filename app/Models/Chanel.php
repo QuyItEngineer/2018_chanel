@@ -4,12 +4,11 @@ namespace App\Models;
 
 use App\Observers\RecordFingerPrintTrait;
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Chanel
  * @package App\Models
- * @version October 25, 2018, 1:09 pm UTC
+ * @version October 28, 2018, 4:13 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
  * @property string image
@@ -66,8 +65,17 @@ class Chanel extends Model
      * @var array
      */
     public static $rules = [
-        
+        'name' => 'required',
+        'image' => 'required',
+        'video_url' => 'required'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }

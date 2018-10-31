@@ -4,6 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Banner::class, function (Faker $faker) {
     return [
-        'url_banner' => 'public/images/logo.png',
+        'url_banner' => 'repsol.png',
     ];
 });

@@ -37,9 +37,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('categories', 'CategoryController');
 
+    Route::get('chanels/create/{id}', 'ChanelController@create')->name('chanels.create');
     Route::resource('chanels', 'ChanelController');
+
+    Route::resource('banners', 'BannerController');
 });
 
 
-
-Route::resource('banners', 'BannerController');
+Route::resource('chanels', 'ChanelController');

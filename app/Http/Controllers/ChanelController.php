@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ChanelService;
+use App\DataTables\ChanelDataTable;
 use App\Http\Requests\CreateChanelRequest;
 use App\Http\Requests\UpdateChanelRequest;
 use App\Repositories\ChanelRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use Illuminate\Http\Request;
 use Response;
 
 class ChanelController extends AppBaseController
@@ -24,26 +24,23 @@ class ChanelController extends AppBaseController
     /**
      * Display a listing of the Chanel.
      *
-     * @param Request $request
+     * @param ChanelDataTable $chanelDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ChanelDataTable $chanelDataTable)
     {
-        $this->chanelRepository->pushCriteria(new RequestCriteria($request));
-        $chanels = $this->chanelRepository->all();
-
-        return view('chanels.index')
-            ->with('chanels', $chanels);
+        return $chanelDataTable->render('chanels.index');
     }
 
     /**
      * Show the form for creating a new Chanel.
      *
+     * @param $id
      * @return Response
      */
-    public function create()
+    public function create($id = null)
     {
-        return view('chanels.create');
+        return view('chanels.create')->with('category_id', $id);
     }
 
     /**
@@ -52,10 +49,18 @@ class ChanelController extends AppBaseController
      * @param CreateChanelRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CreateChanelRequest $request)
     {
         $input = $request->all();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
 
         $chanel = $this->chanelRepository->create($input);
 
@@ -107,10 +112,11 @@ class ChanelController extends AppBaseController
     /**
      * Update the specified Chanel in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateChanelRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function update($id, UpdateChanelRequest $request)
     {
@@ -121,6 +127,14 @@ class ChanelController extends AppBaseController
 
             return redirect(route('chanels.index'));
         }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
+
 
         $chanel = $this->chanelRepository->update($request->all(), $id);
 

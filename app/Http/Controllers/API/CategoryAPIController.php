@@ -40,32 +40,12 @@ class CategoryAPIController extends AppBaseController
      */
     public function getAll()
     {
-//        $result = [
-//            [
-//                'url_banner' => $this->getLatestUrlBanner(),
-//            ]
-//        ];
-
         $result = [
             [
                 'url_banner' => $this->getLatestUrlBanner(),
                 'categories' => $this->getCategories()
             ]
         ];
-
-//        $list_data = $this->categoryRepository->all();
-//
-//        foreach ($list_data as $item) {
-//            $result = array_merge($result,
-//                [
-//                    [
-//                        'categories' => [
-//                            'name' => $item['title'],
-//                            'videos' => $this->getChanelByCategoryId($item)
-//                        ]
-//                    ]
-//                ]);
-//        }
 
         return $this->sendResponse($result, 'Success');
     }

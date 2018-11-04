@@ -22,12 +22,6 @@
     <p>{!! $user->phone !!}</p>
 </div>
 
-<!-- Full Name Field -->
-<div class="form-group">
-    {!! Form::label('full_name', 'Full Name:') !!}
-    <p>{!! $user->full_name !!}</p>
-</div>
-
 <!-- Address Field -->
 <div class="form-group">
     {!! Form::label('address', 'Address:') !!}

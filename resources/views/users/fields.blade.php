@@ -25,12 +25,6 @@
         {!! Form::text('phone', null, ['class' => 'form-control']) !!}
     </div>
 
-    <!-- Full Name Field -->
-    <div class="form-group">
-        {!! Form::label('full_name', 'Full Name:') !!}
-        {!! Form::text('full_name', null, ['class' => 'form-control']) !!}
-    </div>
-
     <!-- Address Field -->
     <div class="form-group">
         {!! Form::label('address', 'Address:') !!}

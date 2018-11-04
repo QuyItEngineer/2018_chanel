@@ -51,6 +51,8 @@ class UserService implements \App\Contracts\UserService
      */
     public function createUserWithRole(array $attributes, UploadedFile $avatar = null, array $roles = [])
     {
+        $attributes['password'] = bcrypt($attributes['password']);
+
         \DB::beginTransaction();
         try {
             if (isset($avatar)) {
@@ -59,8 +61,6 @@ class UserService implements \App\Contracts\UserService
             }
             /** @var User $model */
             $model = $this->userRepository->create($attributes);
-
-            $attributes['password'] = bcrypt($attributes['password']);
 
             $model->syncRoles($roles);
             \DB::commit();

@@ -13,7 +13,10 @@
     <tbody>
     @foreach($chanels as $chanel)
         <tr>
-            <td>{!! request()->root() . '/images/' . $chanel->image !!}</td>
+            <td>
+                <img src="{!! asset('images/' . $chanel->image) !!}" alt="images"  style="height: 50px; width: 50px;">
+                {{--{!! $chanel->image !!}--}}
+            </td>
             <td>{!! $chanel->name !!}</td>
             <td>{!! $chanel->description !!}</td>
             <td>{!! $chanel->video_url !!}</td>

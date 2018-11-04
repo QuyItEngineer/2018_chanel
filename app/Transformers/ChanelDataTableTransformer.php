@@ -21,8 +21,9 @@ class ChanelDataTableTransformer extends TransformerAbstract
      */
     public function transform(Chanel $chanelDataTable)
     {
+        $url = asset('images/' . $chanelDataTable->image);
         return [
-            'image' => request()->root() . '/images/' . $chanelDataTable->image,
+            'image' => '<img src = "'. $url .'" atl="image" height="50" width="50">',
             'name' => $chanelDataTable->name,
             'description' => $chanelDataTable->description,
             'video_url' => $chanelDataTable->video_url,

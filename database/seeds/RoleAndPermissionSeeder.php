@@ -27,15 +27,8 @@ class RoleAndPermissionSeeder extends Seeder
         ];
 
         $permissionMapping = [
-            'admin' => [
-                'create user',
-                'read user',
-                'update user',
-                'delete user',
-            ],
-            'user' => [
-
-            ]
+            'admin.create',
+            'user'
         ];
 
         $roles = [];

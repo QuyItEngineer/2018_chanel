@@ -9,7 +9,7 @@
     <tbody>
     @foreach($banners as $banner)
         <tr>
-            <td>{!! $banner->url_banner !!}</td>
+            <td><img src="{!! asset('images/' . $banner->url_banner) !!}" alt="images" style="height: 50px; width: 50px;"></td>
             <td>{!! $banner->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['banners.destroy', $banner->id], 'method' => 'delete']) !!}

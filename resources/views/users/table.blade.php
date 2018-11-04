@@ -4,8 +4,6 @@
         <th>Avatar</th>
         <th>Username</th>
         <th>Email</th>
-        <th>Store Name</th>
-        <th>Full Name</th>
         <th>Phone</th>
         <th>Address</th>
         <th>Date</th>
@@ -18,8 +16,6 @@
             <td><img width="40" height="40" src="{!! get_avatar($user) !!}" alt="" class="img-circle"></td>
             <td>{!! $user->username !!} @foreach($user->getRoleNames() as $roleName) <span class="label label-primary">{!! $roleName !!}</span> @endforeach</td>
             <td>{!! $user->email !!}</td>
-            <td>{!! count($user->stores) == 1?$user->stores[0]->name:'' !!}</td>
-            <td>{!! $user->full_name !!}</td>
             <td>{!! $user->phone !!}</td>
             <td>{!! $user->address !!}</td>
             <td>{!! $user->created_at->format('d/m/Y') !!}</td>

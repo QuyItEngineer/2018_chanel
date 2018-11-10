@@ -18,6 +18,8 @@ use Eloquent as Model;
  * @property integer category_id
  * @property integer created_by
  * @property integer updated_by
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  */
 class Chanel extends Model
 {
@@ -33,7 +35,6 @@ class Chanel extends Model
 
 
     public $fillable = [
-        'id',
         'image',
         'name',
         'description',

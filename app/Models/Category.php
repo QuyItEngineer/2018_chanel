@@ -15,6 +15,8 @@ use Eloquent as Model;
  * @property string description
  * @property integer created_by
  * @property integer updated_by
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  */
 class Category extends Model
 {
@@ -30,7 +32,6 @@ class Category extends Model
 
 
     public $fillable = [
-        'id',
         'title',
         'description',
         'created_by',
@@ -64,7 +65,7 @@ class Category extends Model
      */
     public function chanels()
     {
-        return $this->hasMany(Chanel::class);
+        return $this->hasMany(Chanel::class, 'category_id');
     }
 
 }

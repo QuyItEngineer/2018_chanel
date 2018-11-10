@@ -19,6 +19,7 @@ class CategoryDataTableTransformer extends TransformerAbstract
         return [
             'title' => $categoryDataTable->title,
             'description' => $categoryDataTable->description,
+            'created_at' => $categoryDataTable->created_at->toDateTimeString(),
             'action' => view('categories.datatables_actions',[
                 'id' => $categoryDataTable->id
             ])->render()

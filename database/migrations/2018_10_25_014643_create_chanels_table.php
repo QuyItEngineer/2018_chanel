@@ -21,7 +21,7 @@ class CreateChanelsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('video_url');
-            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('category_id')->nullable()->unsigned();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

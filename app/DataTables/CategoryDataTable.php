@@ -46,7 +46,7 @@ class CategoryDataTable extends DataTable
             ->addAction(['width' => '120px'])
             ->parameters([
                 'dom'     => 'Blfrtip',
-                'order'   => [[0, 'desc']],
+                'order'   => [[2, 'asc']],
                 'buttons' => [
 //                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
 //                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -67,6 +67,7 @@ class CategoryDataTable extends DataTable
         return [
             'title',
             'description',
+            'created_at'
         ];
     }
 

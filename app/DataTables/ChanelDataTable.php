@@ -46,7 +46,7 @@ class ChanelDataTable extends DataTable
             ->addAction(['width' => '120px'])
             ->parameters([
                 'dom'     => 'Blfrtip',
-                'order'   => [[0, 'desc']],
+                'order'   => [[4, 'asc']],
                 'buttons' => [
 //                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
 //                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -69,6 +69,7 @@ class ChanelDataTable extends DataTable
             'name',
             'description',
             'video_url',
+            'created_at',
         ];
     }
 

@@ -27,6 +27,7 @@ class ChanelDataTableTransformer extends TransformerAbstract
             'name' => $chanelDataTable->name,
             'description' => $chanelDataTable->description,
             'video_url' => $chanelDataTable->video_url,
+            'created_at' => $chanelDataTable->created_at->toDateTimeString(),
             'action' => view('chanels.datatables_actions', [
                 'id' => $chanelDataTable->id
             ])->render()

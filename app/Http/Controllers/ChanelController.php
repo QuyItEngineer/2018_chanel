@@ -160,7 +160,12 @@ class ChanelController extends AppBaseController
             return redirect(route('chanels.index'));
         }
 
-        $this->chanelRepository->delete($id);
+        try {
+            $this->chanelRepository->delete($id);
+        }
+        catch (\Exception $exception) {
+            \Log::info("Error db Delete Channel: " . $exception->getMessage());
+        }
 
         Flash::success('Chanel deleted successfully.');
 

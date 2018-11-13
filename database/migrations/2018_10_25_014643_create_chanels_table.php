@@ -21,14 +21,15 @@ class CreateChanelsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('video_url');
-            $table->unsignedInteger('category_id')->nullable()->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')
                 ->references('id')
-                ->on($tableNames['chanels'])
+                ->on($tableNames['categories'])
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
     }

@@ -6,17 +6,24 @@ use App\DataTables\CategoryDataTable;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
+use App\Repositories\ChanelRepository;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class CategoryController extends AppBaseController
 {
     /** @var  CategoryRepository */
     private $categoryRepository;
+    /**
+     * @var ChanelRepository
+     */
+    private $chanelRepo;
 
-    public function __construct(CategoryRepository $categoryRepo)
+    public function __construct(CategoryRepository $categoryRepo, ChanelRepository $chanelRepo)
     {
         $this->categoryRepository = $categoryRepo;
+        $this->chanelRepo = $chanelRepo;
     }
 
     /**
@@ -148,5 +155,34 @@ class CategoryController extends AppBaseController
         Flash::success('Category deleted successfully.');
 
         return redirect(route('categories.index'));
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy_channel($id, Request $request)
+    {
+        $category_id = $request->get('category_id');
+        $chanel = $this->chanelRepo->findWithoutFail($id);
+
+        if (empty($chanel)) {
+            Flash::error('Chanel not found');
+
+            return redirect(route('chanels.index'));
+        }
+
+        try {
+            $check = $this->chanelRepo->delete($id);
+        }
+        catch (\Exception $exception) {
+            \Log::info("Error db Delete Channel: " . $exception->getMessage());
+        }
+
+        Flash::success('Chanel deleted successfully.');
+
+        /** @var TYPE_NAME $category_id */
+        return $this->show($category_id);
     }
 }

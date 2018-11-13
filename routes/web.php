@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::post('/profile', 'ProfileController@update')->name('profile.update');
 
+    Route::DELETE('categories/destroy/{id}', 'CategoryController@destroy_channel')->name('channel.destroy');
     Route::resource('categories', 'CategoryController');
 
     Route::get('chanels/create/{id}', 'ChanelController@create')->name('chanels.create');

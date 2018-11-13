@@ -23,10 +23,11 @@
             <td>{!! $chanel->category_id !!}</td>
             <td>{!! $chanel->created_at !!}</td>
             <td>
-                {!! Form::open(['route' => ['chanels.destroy', $chanel->id], 'method' => 'delete']) !!}
+                {!! Form::open(['route' => ['channel.destroy', $chanel->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('chanels.show', [$chanel->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('chanels.edit', [$chanel->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::hidden('category_id', $category->id) !!}
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

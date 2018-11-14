@@ -23,10 +23,15 @@
 </div>
 
 <!-- Image Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6 col-lg-6" style="margin-top: 5%;">
     {!! Form::label('image', 'Image:') !!}
 {{--    {!! Form::text('image', null, ['class' => 'form-control']) !!}--}}
         {!! Form::file('image', ['class' => 'form-control', 'value' => '']) !!}
+</div>
+<div class="form-group col-sm-6 col-lg-6">
+    <div style="text-align: center;">
+        <img src="{!! asset('images/' . $chanel->image) !!}" alt="images"  style="height: 200px; width: 200px;">
+    </div>
 </div>
 
 {!! Form::hidden('category_return', $category_id) !!}

@@ -66,7 +66,9 @@ class ChanelController extends AppBaseController
 
         Flash::success('Chanel saved successfully.');
 
-        return redirect(route('chanels.index'));
+        return redirect(route('categories.show', [
+            'id' => isset($request->category_return) ? $request->category_return : ''
+        ]));
     }
 
     /**
@@ -79,6 +81,7 @@ class ChanelController extends AppBaseController
     public function show($id)
     {
         $chanel = $this->chanelRepository->findWithoutFail($id);
+        $category_id = isset($chanel->category_id) ? $chanel->category_id : '';
 
         if (empty($chanel)) {
             Flash::error('Chanel not found');
@@ -86,7 +89,7 @@ class ChanelController extends AppBaseController
             return redirect(route('chanels.index'));
         }
 
-        return view('chanels.show')->with('chanel', $chanel);
+        return view('chanels.show', compact(['category_id', 'chanel']));
     }
 
     /**
@@ -99,6 +102,7 @@ class ChanelController extends AppBaseController
     public function edit($id)
     {
         $chanel = $this->chanelRepository->findWithoutFail($id);
+        $category_id = isset($chanel->category_id) ? $chanel->category_id : '';
 
         if (empty($chanel)) {
             Flash::error('Chanel not found');
@@ -106,7 +110,7 @@ class ChanelController extends AppBaseController
             return redirect(route('chanels.index'));
         }
 
-        return view('chanels.edit')->with('chanel', $chanel);
+        return view('chanels.edit', compact(['category_id', 'chanel']));
     }
 
     /**
@@ -120,13 +124,9 @@ class ChanelController extends AppBaseController
      */
     public function update($id, UpdateChanelRequest $request)
     {
+        $input = $request->all();
         $chanel = $this->chanelRepository->findWithoutFail($id);
-
-        if (empty($chanel)) {
-            Flash::error('Chanel not found');
-
-            return redirect(route('chanels.index'));
-        }
+        $category_id = isset($chanel->category_id) ? $chanel->category_id : '';
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -135,12 +135,19 @@ class ChanelController extends AppBaseController
             $image->move($destinationPath, $input['image']);
         }
 
+        if (empty($chanel)) {
+            Flash::error('Chanel not found');
 
-        $chanel = $this->chanelRepository->update($request->all(), $id);
+            return redirect(route('chanels.index'));
+        }
+
+        $chanel = $this->chanelRepository->update($input, $id);
 
         Flash::success('Chanel updated successfully.');
 
-        return redirect(route('chanels.index'));
+        return redirect(route('categories.show', [
+            'id' => $category_id
+        ]));
     }
 
     /**
@@ -153,6 +160,7 @@ class ChanelController extends AppBaseController
     public function destroy($id)
     {
         $chanel = $this->chanelRepository->findWithoutFail($id);
+        $category_id = isset($chanel->category_id) ? $chanel->category_id : '';
 
         if (empty($chanel)) {
             Flash::error('Chanel not found');
@@ -169,6 +177,8 @@ class ChanelController extends AppBaseController
 
         Flash::success('Chanel deleted successfully.');
 
-        return redirect(route('chanels.index'));
+        return redirect(route('categories.show', [
+            'id' => $category_id
+        ]));
     }
 }

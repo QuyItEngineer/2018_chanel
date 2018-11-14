@@ -19,7 +19,3 @@
     <a href="{!! route('banners.index') !!}"><i class="fa fa-edit"></i><span>Banners</span></a>
 </li>
 
-<li class="{{ Request::is('chanels*') ? 'active' : '' }}">
-    <a href="{!! route('chanels.index') !!}"><i class="fa fa-edit"></i><span>Chanels</span></a>
-</li>
-

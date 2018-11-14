@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($chanel, ['route' => ['chanels.update', $chanel->id], 'method' => 'patch']) !!}
+                   {!! Form::model($chanel, ['route' => ['chanels.update', $chanel->id], 'method' => 'patch', 'files' => true]) !!}
 
                         @include('chanels.fields_edit')
 

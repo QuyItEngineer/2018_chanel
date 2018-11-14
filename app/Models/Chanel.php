@@ -67,7 +67,6 @@ class Chanel extends Model
      */
     public static $rules = [
         'name' => 'required',
-        'image' => 'required',
         'video_url' => 'required'
     ];
 

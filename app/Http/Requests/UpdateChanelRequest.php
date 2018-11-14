@@ -25,6 +25,9 @@ class UpdateChanelRequest extends FormRequest
      */
     public function rules()
     {
-        return Chanel::$rules;
+        return array_merge(Chanel::$rules, [
+            'name' => 'required',
+            'video_url' => 'required'
+        ]);
     }
 }

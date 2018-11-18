@@ -39,5 +39,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('chanels.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('categories.show', [$category_id]) !!}" class="btn btn-default">Cancel</a>
 </div>

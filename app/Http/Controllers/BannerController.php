@@ -125,6 +125,7 @@ class BannerController extends AppBaseController
     public function update($id, UpdateBannerRequest $request)
     {
         $banner = $this->bannerRepository->findWithoutFail($id);
+        $input = $request->all();
 
         if (empty($banner)) {
             Flash::error('Banner not found');
@@ -139,7 +140,7 @@ class BannerController extends AppBaseController
             $image->move($destinationPath, $input['url_banner']);
         }
 
-        $banner = $this->bannerRepository->update($request->all(), $id);
+        $banner = $this->bannerRepository->update($input, $id);
 
         Flash::success('Banner updated successfully.');
 

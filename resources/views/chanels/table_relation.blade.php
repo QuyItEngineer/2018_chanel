@@ -5,7 +5,6 @@
         <th>Name</th>
         <th>Description</th>
         <th>Video Url</th>
-        <th>Category Id</th>
         <th>Created At</th>
         <th colspan="3">Action</th>
     </tr>
@@ -20,14 +19,13 @@
             <td>{!! $chanel->name !!}</td>
             <td>{!! $chanel->description !!}</td>
             <td>{!! $chanel->video_url !!}</td>
-            <td>{!! $chanel->category_id !!}</td>
             <td>{!! $chanel->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['channel.destroy', $chanel->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('chanels.show', [$chanel->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('chanels.edit', [$chanel->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::hidden('category_id', $category->id) !!}
+                    {!! Form::hidden('sub_category_id', $subCategory->id) !!}
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

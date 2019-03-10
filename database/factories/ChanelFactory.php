@@ -8,6 +8,6 @@ $factory->define(\App\Models\Chanel::class, function (Faker $faker) {
         'image' => 'singer.jpg',
         'description' => $faker->text(),
         'video_url' => 'http://set.flashmediacast.com:1935/SET/livestream/playlist.m3u8',
-        'category_id' => \App\Models\Category::first()->id,
+        'sub_category_id' => \App\Models\SubCategory::first()->id,
     ];
 });

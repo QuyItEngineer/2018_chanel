@@ -59,7 +59,7 @@ class CategoryAPIController extends AppBaseController
             $result = array_merge($result,[
                 [
                     'name' => $item['title'],
-                    'videos' => $this->getChanelByCategoryId($item)
+                    'sub_categories' => $this->getSubCategoryByCategoryId($item)
                 ]
             ]);
         }
@@ -72,7 +72,32 @@ class CategoryAPIController extends AppBaseController
      * @param Chanel $item
      * @return array
      */
-    public function getChanelByCategoryId($item)
+    public function getSubCategoryByCategoryId($item)
+    {
+        $result_chanel = [];
+
+        if (!empty($item->subCategories)) {
+            foreach ($item->subCategories as $subCategory) {
+                $result_chanel = array_merge($result_chanel,[
+                    [
+                        'name' => $subCategory->title,
+                        'video' => $this->getChannelBySubCategoryId($subCategory)
+                    ]
+                ]);
+            }
+        } else {
+            $result_chanel = [];
+        }
+
+        return $result_chanel;
+    }
+
+    /**
+     * Get Chanel by sub_category_id
+     * @param $item
+     * @return array
+     */
+    public function getChannelBySubCategoryId($item)
     {
         $result_chanel = [];
 

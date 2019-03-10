@@ -6,8 +6,8 @@
 
 <!-- Category Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    {!! Form::number('category_id', null, ['class' => 'form-control', 'readonly'=> 'true']) !!}
+    {!! Form::label('sub_category_id', 'Sub Category Id:') !!}
+    {!! Form::number('sub_category_id', null, ['class' => 'form-control', 'readonly'=> 'true']) !!}
 </div>
 
 <!-- Description Field -->
@@ -34,10 +34,10 @@
     </div>
 </div>
 
-{!! Form::hidden('category_return', $category_id) !!}
+{!! Form::hidden('category_return', $sub_category_id) !!}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('categories.show', [$category_id]) !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('subCategories.show', [$sub_category_id]) !!}" class="btn btn-default">Cancel</a>
 </div>

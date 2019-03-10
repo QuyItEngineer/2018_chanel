@@ -9,6 +9,7 @@
 return[
     'table_names' => [
         'categories' => 'categories',
+        'sub_categories' => 'sub_categories',
         'chanels' => 'chanels'
     ]
 ];

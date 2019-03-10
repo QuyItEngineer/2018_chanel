@@ -6,7 +6,7 @@ use App\DataTables\CategoryDataTable;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
-use App\Repositories\ChanelRepository;
+use App\Repositories\SubCategoryRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Response;
@@ -16,14 +16,19 @@ class CategoryController extends AppBaseController
     /** @var  CategoryRepository */
     private $categoryRepository;
     /**
-     * @var ChanelRepository
+     * @var SubCategoryRepository
      */
-    private $chanelRepo;
+    private $subCategoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepo, ChanelRepository $chanelRepo)
+    /**
+     * CategoryController constructor.
+     * @param CategoryRepository $categoryRepo
+     * @param SubCategoryRepository $subCategoryRepository
+     */
+    public function __construct(CategoryRepository $categoryRepo, SubCategoryRepository $subCategoryRepository)
     {
         $this->categoryRepository = $categoryRepo;
-        $this->chanelRepo = $chanelRepo;
+        $this->subCategoryRepository = $subCategoryRepository;
     }
 
     /**
@@ -76,7 +81,10 @@ class CategoryController extends AppBaseController
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
-        $chanels = $category->chanels;
+        if (empty($category)) {
+            return redirect('/home');
+        }
+        $sub_categories = $category->subCategories;
 
         if (empty($category)) {
             Flash::error('Category not found');
@@ -84,7 +92,7 @@ class CategoryController extends AppBaseController
             return redirect(route('categories.index'));
         }
 
-        return view('categories.show', compact(['category', 'chanels']));
+        return view('categories.show', compact(['category', 'sub_categories']));
     }
 
     /**
@@ -162,10 +170,10 @@ class CategoryController extends AppBaseController
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy_channel($id, Request $request)
+    public function destroy_subcategory ($id, Request $request)
     {
         $category_id = $request->get('category_id');
-        $chanel = $this->chanelRepo->findWithoutFail($id);
+        $chanel = $this->subCategoryRepository->findWithoutFail($id);
 
         if (empty($chanel)) {
             Flash::error('Chanel not found');
@@ -174,9 +182,8 @@ class CategoryController extends AppBaseController
         }
 
         try {
-            $check = $this->chanelRepo->delete($id);
-        }
-        catch (\Exception $exception) {
+            $check = $this->subCategoryRepository->delete($id);
+        } catch (\Exception $exception) {
             \Log::info("Error db Delete Channel: " . $exception->getMessage());
         }
 

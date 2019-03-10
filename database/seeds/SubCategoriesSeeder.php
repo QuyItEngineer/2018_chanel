@@ -17,6 +17,6 @@ class SubCategoriesSeeder extends Seeder
         }
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(App\Models\SubCategory::class, 5)->create();
+        factory(App\Models\SubCategory::class, 2)->create();
     }
 }

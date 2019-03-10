@@ -28,12 +28,6 @@
     <p>{!! $chanel->video_url !!}</p>
 </div>
 
-<!-- Category Id Field -->
-<div class="form-group">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    <p>{!! $chanel->category_id !!}</p>
-</div>
-
 <!-- Created By Field -->
 <div class="form-group">
     {!! Form::label('created_by', 'Created By:') !!}

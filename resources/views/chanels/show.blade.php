@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('chanels.show_fields')
-                    <a href="{!! route('chanels.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('subCategories.show', [$sub_category_id]) !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

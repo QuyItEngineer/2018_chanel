@@ -63,9 +63,9 @@ class Category extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function chanels()
+    public function subCategories()
     {
-        return $this->hasMany(Chanel::class, 'category_id');
+        return $this->hasMany(SubCategory::class, 'category_id');
     }
 
 }

@@ -1,7 +1,7 @@
 <!-- Url Banner Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('url_banner', 'Upload Banner:') !!}
-    {!! Form::file('url_banner', ['class' => 'form-control']) !!}
+    {!! Form::file('url_banner', ['class' => 'form-control', 'value' => '']) !!}
 </div>
 
 <!-- Submit Field -->

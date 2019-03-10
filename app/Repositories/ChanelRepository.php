@@ -24,7 +24,7 @@ class ChanelRepository extends BaseRepository
         'name',
         'description',
         'video_url',
-        'category_id',
+        'sub_category_id',
         'created_by',
         'updated_by'
     ];

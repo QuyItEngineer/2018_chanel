@@ -4,28 +4,27 @@ namespace App\Models;
 
 use App\Observers\RecordFingerPrintTrait;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Chanel
+ * Class SubCategory
  * @package App\Models
- * @version October 28, 2018, 4:13 pm UTC
+ * @version March 8, 2019, 8:14 am UTC
  *
+ * @property \App\Models\Category category
+ * @property \Illuminate\Database\Eloquent\Collection Chanel
  * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
- * @property string image
- * @property string name
+ * @property string title
  * @property string description
- * @property string video_url
  * @property integer category_id
  * @property integer created_by
  * @property integer updated_by
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
  */
-class Chanel extends Model
+class SubCategory extends Model
 {
     use RecordFingerPrintTrait;
 
-    public $table = 'chanels';
+    public $table = 'sub_categories';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -35,11 +34,9 @@ class Chanel extends Model
 
 
     public $fillable = [
-        'image',
-        'name',
+        'title',
         'description',
-        'video_url',
-        'sub_category_id',
+        'category_id',
         'created_by',
         'updated_by'
     ];
@@ -51,11 +48,9 @@ class Chanel extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'image' => 'string',
-        'name' => 'string',
+        'title' => 'string',
         'description' => 'string',
-        'video_url' => 'string',
-        'sub_category_id' => 'integer',
+        'category_id' => 'integer',
         'created_by' => 'integer',
         'updated_by' => 'integer'
     ];
@@ -66,16 +61,22 @@ class Chanel extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'video_url' => 'required'
+        
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+     **/
     public function category()
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->belongsTo(\App\Models\Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function chanels()
+    {
+        return $this->hasMany(\App\Models\Chanel::class);
+    }
 }

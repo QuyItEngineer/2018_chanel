@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChanelsTable extends Migration
+class CreateSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,20 +15,18 @@ class CreateChanelsTable extends Migration
     {
         $tableNames = config('db_names.table_names');
 
-        Schema::create('chanels', function (Blueprint $table) use ($tableNames) {
+        Schema::create('sub_categories', function (Blueprint $table) use ($tableNames){
             $table->increments('id');
-            $table->string('image');
-            $table->string('name');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->text('video_url');
-            $table->integer('sub_category_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('sub_category_id')
+            $table->foreign('category_id')
                 ->references('id')
-                ->on($tableNames['sub_categories'])
+                ->on($tableNames['categories'])
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -41,6 +39,6 @@ class CreateChanelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chanels');
+        Schema::dropIfExists('sub_categories');
     }
 }

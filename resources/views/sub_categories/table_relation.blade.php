@@ -3,6 +3,7 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>Image</th>
         <th colspan="3">Action</th>
     </tr>
     </thead>
@@ -11,6 +12,9 @@
     <tr>
         <td>{!! $sub_category->title !!}</td>
         <td>{!! $sub_category->description !!}</td>
+        <td>
+            <img src="{!! asset('images/' . $sub_category->image) !!}" alt="images"  style="height: 50px; width: 50px;">
+        </td>
         <td style="min-width: 100px">
             {!! Form::open(['route' => ['sub-categories.destroy', $sub_category->id], 'method' => 'delete']) !!}
             <div class='btn-group'>

@@ -190,6 +190,8 @@ class CategoryController extends AppBaseController
         Flash::success('Chanel deleted successfully.');
 
         /** @var TYPE_NAME $category_id */
-        return $this->show($category_id);
+        return redirect(route('categories.show', [
+            'id' => $category_id
+        ]));
     }
 }

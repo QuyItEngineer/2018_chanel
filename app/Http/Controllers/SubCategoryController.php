@@ -70,6 +70,13 @@ class SubCategoryController extends AppBaseController
     {
         $input = $request->all();
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
+
         $subCategory = $this->subCategoryRepository->create($input);
 
         Flash::success('Sub Category saved successfully.');
@@ -136,8 +143,16 @@ class SubCategoryController extends AppBaseController
      */
     public function update($id, UpdateSubCategoryRequest $request)
     {
+        $input = $request->all();
         $subCategory = $this->subCategoryRepository->findWithoutFail($id);
         $category_id = isset($subCategory->category_id) ? $subCategory->category_id : '';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $input['image'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['image']);
+        }
 
         if (empty($subCategory)) {
             Flash::error('Sub Category not found');
@@ -145,7 +160,7 @@ class SubCategoryController extends AppBaseController
             return redirect(route('subCategories.index'));
         }
 
-        $subCategory = $this->subCategoryRepository->update($request->all(), $id);
+        $subCategory = $this->subCategoryRepository->update($input, $id);
 
         Flash::success('Sub Category updated successfully.');
 
@@ -206,7 +221,12 @@ class SubCategoryController extends AppBaseController
 
         Flash::success('Chanel deleted successfully.');
 
-        /** @var TYPE_NAME $category_id */
-        return $this->show($sub_category_id);
+        /**
+         *$this->show($sub_category_id);
+         * @var TYPE_NAME $category_id
+         */
+        return redirect(route('categories.show', [
+            'id' => $category_id
+        ]));
     }
 }

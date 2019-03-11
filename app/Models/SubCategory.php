@@ -36,6 +36,7 @@ class SubCategory extends Model
     public $fillable = [
         'title',
         'description',
+        'image',
         'category_id',
         'created_by',
         'updated_by'
@@ -50,6 +51,7 @@ class SubCategory extends Model
         'id' => 'integer',
         'title' => 'string',
         'description' => 'string',
+        'image' => 'string',
         'category_id' => 'integer',
         'created_by' => 'integer',
         'updated_by' => 'integer'

@@ -19,6 +19,7 @@ class CreateSubCategoriesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

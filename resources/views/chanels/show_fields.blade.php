@@ -4,10 +4,11 @@
     <p>{!! $chanel->id !!}</p>
 </div>
 
-<!-- Image Field -->
 <div class="form-group">
     {!! Form::label('image', 'Image:') !!}
-    <p>{!! $chanel->image !!}</p>
+    <div>
+        <img src="{!! asset('images/' . $chanel->image) !!}" alt="images" style="height: 200px; width: 200px;">
+    </div>
 </div>
 
 <!-- Name Field -->

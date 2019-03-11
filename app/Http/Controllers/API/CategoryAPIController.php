@@ -81,6 +81,7 @@ class CategoryAPIController extends AppBaseController
                 $result_chanel = array_merge($result_chanel,[
                     [
                         'name' => $subCategory->title,
+                        'image' => $subCategory->image,
                         'video' => $this->getChannelBySubCategoryId($subCategory)
                     ]
                 ]);

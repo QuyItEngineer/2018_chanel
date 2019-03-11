@@ -24,7 +24,7 @@ class SubCategoryDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Post $model
+     * @param SubCategory $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(SubCategory $model)
@@ -66,6 +66,7 @@ class SubCategoryDataTable extends DataTable
         return [
             'title',
             'description',
+            'image',
             'category_id',
             'created_by',
             'updated_by'

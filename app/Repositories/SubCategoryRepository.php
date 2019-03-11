@@ -22,6 +22,7 @@ class SubCategoryRepository extends BaseRepository
     protected $fieldSearchable = [
         'title',
         'description',
+        'image',
         'category_id',
         'created_by',
         'updated_by'

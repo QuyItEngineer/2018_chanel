@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($subCategory, ['route' => ['subCategories.update', $subCategory->id], 'method' => 'patch']) !!}
+                   {!! Form::model($subCategory, ['route' => ['subCategories.update', $subCategory->id], 'method' => 'patch', 'files' => true]) !!}
 
-                        @include('sub_categories.fields')
+                        @include('sub_categories.fields_edit')
 
                    {!! Form::close() !!}
                </div>

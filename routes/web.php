@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/api/category/all', 'API\CategoryAPIController@getAll')->name('category.all');
+Route::post('/api/channel/is_video', 'API\ChannelAPIController@is_video_status')->name('channel.is_status');
 
 Route::get('/reader', 'ReaderController@index');
 Route::get('/social/{provider}/redirect', 'Auth\LoginController@redirect')->name('auth.social.redirect');

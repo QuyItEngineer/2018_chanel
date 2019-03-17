@@ -81,6 +81,7 @@ class CategoryAPIController extends AppBaseController
                 $result_chanel = array_merge($result_chanel,[
                     [
                         'name' => $subCategory->title,
+                        'image' => request()->root() . '/images/' . $subCategory->image,
                         'video' => $this->getChannelBySubCategoryId($subCategory)
                     ]
                 ]);
@@ -108,6 +109,7 @@ class CategoryAPIController extends AppBaseController
                         'name' => $chanel->name,
                         'description' => isset($chanel->description) ? $chanel->description : '',
                         'url' => $chanel->video_url,
+                        'is_show_video_url' => trans('labels.template.video_status')[$chanel->is_show_video_url],
                         'image' => request()->root() . '/images/' . $chanel->image
                     ]
                 ]);

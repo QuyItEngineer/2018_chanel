@@ -21,6 +21,7 @@ class CreateChanelsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('video_url');
+            $table->char('is_show_video_url')->default('0');
             $table->integer('sub_category_id')->unsigned();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

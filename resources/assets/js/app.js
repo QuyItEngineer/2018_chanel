@@ -47,6 +47,7 @@ Vue.component('code-editor', require('./components/CodeEditor.vue'));
 Vue.component('addable', require('./components/Addable.vue'));
 Vue.component('get-list-story', require('./components/GetListStory.vue'));
 Vue.component('reader-app', require('./pages/ReaderApp.vue'));
+Vue.component('is-video-status', require('./components/channel/IsVideoStatus.vue'));
 
 const app = new Vue({
     el: '#app',

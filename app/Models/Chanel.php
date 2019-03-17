@@ -29,7 +29,8 @@ class Chanel extends Model
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
+    const IS_VIDEO_STATUS_FALSE = '0';
+    const IS_VIDEO_STATUS_TRUE = '1';
 
     protected $dates = ['deleted_at'];
 
@@ -39,6 +40,7 @@ class Chanel extends Model
         'name',
         'description',
         'video_url',
+        'is_show_video_url',
         'sub_category_id',
         'created_by',
         'updated_by'
@@ -55,6 +57,7 @@ class Chanel extends Model
         'name' => 'string',
         'description' => 'string',
         'video_url' => 'string',
+        'is_show_video_url' => 'string',
         'sub_category_id' => 'integer',
         'created_by' => 'integer',
         'updated_by' => 'integer'

@@ -24,5 +24,11 @@ return [
     'chapter_type' => [
         'Text',
         'Image'
+    ],
+    'template' => [
+        'video_status' => [
+            \App\Models\Chanel::IS_VIDEO_STATUS_TRUE => 'true',
+            \App\Models\Chanel::IS_VIDEO_STATUS_FALSE => 'false'
+        ]
     ]
 ];

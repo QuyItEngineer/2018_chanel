@@ -28,13 +28,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('css')
-    <style>
-        .checkbox_channels {
-            min-width: 24px;
-            min-height: 24px;
-            margin: 0px;
-        }
-    </style>
 </head>
 
 <body class="skin-blue sidebar-mini">

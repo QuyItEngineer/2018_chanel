@@ -1,7 +1,12 @@
 <template>
     <div>
-        <input type="checkbox" class="checkbox_channels" v-model="status" :checked="status"
-               v-on:click="change_checkbox(id, status = $event)"/>
+        <div class="checbox icheck">
+            <label>
+                <input type="checkbox" class="checkbox_channels" v-model="status" :checked="status"
+                       v-on:click="change_checkbox(id, status = $event)"/>
+            </label>
+
+        </div>
     </div>
 </template>
 
@@ -63,4 +68,8 @@
 </script>
 
 <style scoped>
+    .checkbox_channels {
+        transform: scale(1.5);
+        margin: 6px;
+    }
 </style>

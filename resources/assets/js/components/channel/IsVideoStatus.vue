@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="checkbox" class="checkbox_channels" id="is_video" v-model="status" :checked="status"
-               v-on:click="change_checkbox(id, status = $event)"/>
+               v-on:click="change_checkbox(id, status = $event)" style="min-width: 24px; min-height: 24px; margin: 0px;"/>
     </div>
 </template>
 
@@ -63,9 +63,4 @@
 </script>
 
 <style scoped>
-    .checkbox_channels {
-        min-width: 24px;
-        min-height: 24px;
-        margin: 0px;
-    }
 </style>

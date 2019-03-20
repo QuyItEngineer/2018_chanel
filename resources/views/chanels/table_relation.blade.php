@@ -11,7 +11,6 @@
     </thead>
     <tbody>
     @foreach($chanels as $chanel)
-        {!! trans('labels.template.video_status')[$chanel->is_show_video_url] !!}
         <tr>
             <td>
                 <img src="{!! asset('images/' . $chanel->image) !!}" alt="images"  style="height: 50px; width: 50px;">
